@@ -49,14 +49,107 @@ function createTraveler(): Traveler {
   };
 }
 
+function getWorldOffset(key: string, time: number) {
+  const motions: Record<
+    string,
+    {
+      amplitude: number;
+      speed: number;
+      phase: number;
+    }
+  > = {
+    fantasy: {
+      amplitude: 20,
+      speed: 1000,
+      phase: 0,
+    },
+
+    history: {
+      amplitude: 20,
+      speed: 10000,
+      phase: 1,
+    },
+
+    scifi: {
+      amplitude: 22,
+      speed: 2200,
+      phase: 2,
+    },
+
+    apocalypse: {
+      amplitude: 10,
+      speed: 1000,
+      phase: 3,
+    },
+
+    horror: {
+      amplitude: 1,
+      speed: 25,
+      phase: 4,
+    },
+
+    adventure: {
+      amplitude: 450,
+      speed: 3200,
+      phase: 5,
+    },
+
+    cute: {
+      amplitude: 7,
+      speed: 1700,
+      phase: 6,
+    },
+
+    orbital: {
+      amplitude: 12,
+      speed: 1200,
+      phase: 7,
+    },
+
+    nightmare: {
+      amplitude: 20,
+      speed: 3000,
+      phase: 8,
+    },
+
+    pets: {
+      amplitude: 25,
+      speed: 2500,
+      phase: 9,
+    },
+  };
+
+  const motion = motions[key];
+
+  if (!motion) {
+    return { dx: 0, dy: 0 };
+  }
+
+  return {
+    dx: Math.sin(time / motion.speed + motion.phase) * motion.amplitude,
+
+    dy: Math.cos(time / motion.speed + motion.phase) * motion.amplitude,
+  };
+}
+
 export default function WorldUniverse() {
   const [travelers, setTravelers] = useState(() =>
-    Array.from({ length: 3 }, () => createTraveler()),
+    Array.from({ length: 1 }, () => createTraveler()),
   );
 
   const [homeRadius, setHomeRadius] = useState(BASE_HOME_RADIUS);
 
   const [homeColor, setHomeColor] = useState(homeColors[0]);
+
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(Date.now());
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const stars = useMemo(
     () =>
@@ -167,8 +260,27 @@ export default function WorldUniverse() {
         ))}
 
         {travelers.map((traveler, index) => {
-          const from = worlds[traveler.from];
-          const to = worlds[traveler.to];
+          const fromOffset =
+            traveler.from === "home"
+              ? { dx: 0, dy: 0 }
+              : getWorldOffset(traveler.from, time);
+
+          const toOffset =
+            traveler.to === "home"
+              ? { dx: 0, dy: 0 }
+              : getWorldOffset(traveler.to, time);
+
+          const from = {
+            ...worlds[traveler.from],
+            x: worlds[traveler.from].x + fromOffset.dx,
+            y: worlds[traveler.from].y + fromOffset.dy,
+          };
+
+          const to = {
+            ...worlds[traveler.to],
+            x: worlds[traveler.to].x + toOffset.dx,
+            y: worlds[traveler.to].y + toOffset.dy,
+          };
 
           const x = from.x + (to.x - from.x) * traveler.progress;
 
@@ -191,18 +303,25 @@ export default function WorldUniverse() {
           );
         })}
 
-        {Object.entries(worlds).map(([key, world]) => (
-          <WorldPlanet
-            key={key}
-            id={key}
-            world={{
-              ...world,
-              radius: key === "home" ? homeRadius : world.radius,
-              color: key === "home" ? homeColor : world.color,
-            }}
-            central={key === "home"}
-          />
-        ))}
+        {Object.entries(worlds).map(([key, world]) => {
+          const offset =
+            key === "home" ? { dx: 0, dy: 0 } : getWorldOffset(key, time);
+
+          return (
+            <WorldPlanet
+              key={key}
+              id={key}
+              world={{
+                ...world,
+                x: world.x + offset.dx,
+                y: world.y + offset.dy,
+                radius: key === "home" ? homeRadius : world.radius,
+                color: key === "home" ? homeColor : world.color,
+              }}
+              central={key === "home"}
+            />
+          );
+        })}
       </svg>
     </section>
   );

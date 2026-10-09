@@ -1,5 +1,5 @@
 export const BASE_HOME_RADIUS = 45;
-export const TRAVEL_SPEED = 0.012;
+export const TRAVEL_SPEED = 0.006;
 
 export const homeColors = [
   "#2E8B57",
@@ -107,8 +107,8 @@ export const worlds: Record<string, World> = {
   },
 
   nightmare: {
-    x: 730,
-    y: 500,
+    x: 690,
+    y: 470,
     radius: 18,
     label: "",
     icon: "🌙",
