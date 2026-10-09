@@ -3,6 +3,17 @@ import { useEffect, useMemo, useState } from "react";
 const BASE_HOME_RADIUS = 45;
 const TRAVEL_SPEED = 0.012;
 
+const homeColors = [
+  "#2E8B57", // nature
+  "#3B82F6", // technology
+  "#8B5CF6", // magic
+  "#EC4899", // cute
+  "#D97706", // historical
+  "#991B1B", // horror
+  "#06B6D4", // sci-fi
+  "#10B981", // adventure
+];
+
 type World = {
   x: number;
   y: number;
@@ -19,7 +30,7 @@ const worlds: Record<string, World> = {
     y: 320,
     radius: BASE_HOME_RADIUS,
     label: "Your World",
-    color: "#2E8B57",
+    color: homeColors[0],
   },
 
   fantasy: {
@@ -186,6 +197,8 @@ export default function WorldUniverse() {
 
   const [homeRadius, setHomeRadius] = useState(BASE_HOME_RADIUS);
 
+  const [homeColor, setHomeColor] = useState(homeColors[0]);
+
   const stars = useMemo(
     () =>
       Array.from({ length: 200 }, (_, index) => ({
@@ -229,6 +242,14 @@ export default function WorldUniverse() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHomeColor(homeColors[Math.floor(Math.random() * homeColors.length)]);
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       style={{
@@ -240,13 +261,39 @@ export default function WorldUniverse() {
     >
       <svg width={900} height={650}>
         <defs>
-          {Object.entries(worlds).map(([key, world]) => (
-            <radialGradient key={key} id={`planet-${key}`}>
-              <stop offset="0%" stopColor="white" stopOpacity="0.4" />
-              <stop offset="20%" stopColor={world.color} />
-              <stop offset="100%" stopColor={world.color} />
-            </radialGradient>
-          ))}
+          <filter id="planetShadow">
+            <feDropShadow
+              dx="0"
+              dy="5"
+              stdDeviation="8"
+              floodColor="#000000"
+              floodOpacity="0.5"
+            />
+          </filter>
+
+          {Object.entries(worlds).map(([key, world]) => {
+            const color = key === "home" ? homeColor : world.color;
+
+            return (
+              <radialGradient
+                key={key}
+                id={`planet-${key}`}
+                cx="25%"
+                cy="25%"
+                r="75%"
+              >
+                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
+
+                <stop offset="10%" stopColor="#FFFFFF" stopOpacity="0.6" />
+
+                <stop offset="30%" stopColor={color} />
+
+                <stop offset="85%" stopColor={color} />
+
+                <stop offset="100%" stopColor="#000000" stopOpacity="0.8" />
+              </radialGradient>
+            );
+          })}
         </defs>
 
         {stars.map((star) => (
@@ -277,7 +324,7 @@ export default function WorldUniverse() {
                 y2={to.y}
                 stroke={traveler.color}
                 strokeWidth={2}
-                opacity={0.12}
+                opacity={0.1}
               />
 
               <circle cx={x} cy={y} r={6} fill={traveler.color} />
@@ -292,6 +339,7 @@ export default function WorldUniverse() {
             world={{
               ...world,
               radius: key === "home" ? homeRadius : world.radius,
+              color: key === "home" ? homeColor : world.color,
             }}
             central={key === "home"}
           />
@@ -315,6 +363,7 @@ function WorldPlanet({ id, world, central = false }: WorldPlanetProps) {
         cy={world.y}
         r={world.radius}
         fill={`url(#planet-${id})`}
+        filter="url(#planetShadow)"
       />
 
       {world.satellite ? (
@@ -328,8 +377,10 @@ function WorldPlanet({ id, world, central = false }: WorldPlanetProps) {
           fill="white"
           textAnchor="middle"
           style={{
+            fontFamily: "Inter, system-ui, sans-serif",
             fontSize: central ? "15px" : "12px",
-            fontWeight: central ? "bold" : "normal",
+            fontWeight: central ? 700 : 500,
+            letterSpacing: "0.5px",
             userSelect: "none",
           }}
         >
