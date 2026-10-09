@@ -1,158 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
 
-const BASE_HOME_RADIUS = 45;
-const TRAVEL_SPEED = 0.012;
+import WorldPlanet from "./WorldPlanet";
 
-const homeColors = [
-  "#2E8B57", // nature
-  "#3B82F6", // technology
-  "#8B5CF6", // magic
-  "#EC4899", // cute
-  "#D97706", // historical
-  "#991B1B", // horror
-  "#06B6D4", // sci-fi
-  "#10B981", // adventure
-];
-
-type World = {
-  x: number;
-  y: number;
-  radius: number;
-  label: string;
-  icon?: string;
-  color: string;
-  satellite?: boolean;
-};
-
-const worlds: Record<string, World> = {
-  home: {
-    x: 450,
-    y: 320,
-    radius: BASE_HOME_RADIUS,
-    label: "Your World",
-    color: homeColors[0],
-  },
-
-  fantasy: {
-    x: 250,
-    y: 370,
-    radius: 40,
-    label: "Fantasy",
-    color: "#8B5CF6",
-  },
-
-  history: {
-    x: 250,
-    y: 220,
-    radius: 38,
-    label: "History",
-    color: "#D97706",
-  },
-
-  cute: {
-    x: 420,
-    y: 520,
-    radius: 38,
-    label: "Cute",
-    color: "#EC4899",
-  },
-
-  horror: {
-    x: 650,
-    y: 430,
-    radius: 40,
-    label: "Horror",
-    color: "#991B1B",
-  },
-
-  adventure: {
-    x: 690,
-    y: 230,
-    radius: 42,
-    label: "Adventure",
-    color: "#10B981",
-  },
-
-  scifi: {
-    x: 500,
-    y: 90,
-    radius: 58,
-    label: "Sci‑Fi",
-    color: "#06B6D4",
-  },
-
-  apocalypse: {
-    x: 760,
-    y: 100,
-    radius: 55,
-    label: "Apocalypse",
-    color: "#6B7280",
-  },
-
-  orbital: {
-    x: 440,
-    y: 30,
-    radius: 18,
-    label: "",
-    icon: "🛰",
-    color: "#67E8F9",
-    satellite: true,
-  },
-
-  nightmare: {
-    x: 730,
-    y: 500,
-    radius: 18,
-    label: "",
-    icon: "🌙",
-    color: "#450A0A",
-    satellite: true,
-  },
-
-  pets: {
-    x: 510,
-    y: 575,
-    radius: 18,
-    label: "",
-    icon: "🐾",
-    color: "#F9A8D4",
-    satellite: true,
-  },
-};
-
-const rareRoutes = [
-  ["home", "fantasy"],
-  ["home", "history"],
-  ["home", "cute"],
-  ["home", "horror"],
-  ["home", "adventure"],
-  ["home", "scifi"],
-] as const;
-
-const uncommonRoutes = [
-  ["fantasy", "history"],
-  ["fantasy", "scifi"],
-  ["scifi", "adventure"],
-  ["horror", "adventure"],
-  ["cute", "fantasy"],
-] as const;
-
-const commonRoutes = [
-  ["apocalypse", "home"],
-  ["apocalypse", "scifi"],
-  ["horror", "nightmare"],
-  ["cute", "pets"],
-  ["scifi", "orbital"],
-] as const;
-
-const travelerColors = [
-  "#D4A24C",
-  "#60A5FA",
-  "#34D399",
-  "#F472B6",
-  "#A78BFA",
-  "#F97316",
-];
+import {
+    BASE_HOME_RADIUS,
+    commonRoutes,
+    homeColors,
+    rareRoutes,
+    TRAVEL_SPEED,
+    travelerColors,
+    uncommonRoutes,
+    worlds,
+} from "../data/worldUniverseData";
 
 type Traveler = {
   from: string;
@@ -234,10 +93,10 @@ export default function WorldUniverse() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const pulse = BASE_HOME_RADIUS + Math.sin(Date.now() / 500) * 5;
+      const pulse = BASE_HOME_RADIUS + Math.sin(Date.now() / 2000) * 34;
 
       setHomeRadius(pulse);
-    }, 30);
+    }, 4);
 
     return () => clearInterval(interval);
   }, []);
@@ -245,7 +104,7 @@ export default function WorldUniverse() {
   useEffect(() => {
     const interval = setInterval(() => {
       setHomeColor(homeColors[Math.floor(Math.random() * homeColors.length)]);
-    }, 1500);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
@@ -346,47 +205,5 @@ export default function WorldUniverse() {
         ))}
       </svg>
     </section>
-  );
-}
-
-type WorldPlanetProps = {
-  id: string;
-  world: World;
-  central?: boolean;
-};
-
-function WorldPlanet({ id, world, central = false }: WorldPlanetProps) {
-  return (
-    <>
-      <circle
-        cx={world.x}
-        cy={world.y}
-        r={world.radius}
-        fill={`url(#planet-${id})`}
-        filter="url(#planetShadow)"
-      />
-
-      {world.satellite ? (
-        <text x={world.x} y={world.y + 5} textAnchor="middle" fontSize="14">
-          {world.icon}
-        </text>
-      ) : (
-        <text
-          x={world.x}
-          y={world.y + world.radius + 22}
-          fill="white"
-          textAnchor="middle"
-          style={{
-            fontFamily: "Inter, system-ui, sans-serif",
-            fontSize: central ? "15px" : "12px",
-            fontWeight: central ? 700 : 500,
-            letterSpacing: "0.5px",
-            userSelect: "none",
-          }}
-        >
-          {world.label}
-        </text>
-      )}
-    </>
   );
 }
