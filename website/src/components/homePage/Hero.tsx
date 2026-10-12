@@ -12,7 +12,8 @@ export default function Hero() {
 
           <p>
             You are a traveler crossing countless worlds, gathering resources,
-            knowledge and memories until one day you create a world of your own.
+            knowledge and memories until one day you use everything to create a
+            world of your own.
           </p>
         </div>
       </PageContainer>
