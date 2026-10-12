@@ -33,6 +33,7 @@ function HeroSection() {
             The question is no longer whether you can travel. It is : "Which
             one?".
           </p>
+          <div className="travel-portal">🌀</div>
         </div>
       </PageContainer>
     </Section>
@@ -52,21 +53,39 @@ function ChoosingDestinationSection() {
 
           <div className="card-row">
             <Card>
-              <h3>Starter Village</h3>
-              <p>Simple resources.</p>
-              <p>Affordable travel.</p>
+              <div className="destination-card">
+                <div className="destination-icon">🌱</div>
+
+                <h3>Starter Village</h3>
+
+                <p>Simple resources.</p>
+
+                <p>Affordable travel.</p>
+              </div>
             </Card>
 
             <Card>
-              <h3>Crafting Region</h3>
-              <p>Specialized materials.</p>
-              <p>Moderate travel cost.</p>
+              <div className="destination-card">
+                <div className="destination-icon">⚒️</div>
+
+                <h3>Crafting Region</h3>
+
+                <p>Specialized materials.</p>
+
+                <p>Moderate travel cost.</p>
+              </div>
             </Card>
 
             <Card>
-              <h3>Ancient Kingdom</h3>
-              <p>Rare opportunities.</p>
-              <p>Demanding access.</p>
+              <div className="destination-card">
+                <div className="destination-icon">🏰</div>
+
+                <h3>Ancient Kingdom</h3>
+
+                <p>Rare opportunities.</p>
+
+                <p>Demanding access.</p>
+              </div>
             </Card>
           </div>
         </div>

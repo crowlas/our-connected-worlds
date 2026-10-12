@@ -76,6 +76,8 @@ p {
 
 .card {
   width: 250px;
+  min-height: 220px;
+
   background: rgba(30, 41, 59, 0.75);
 
   border: 1px solid #334155;
@@ -84,9 +86,16 @@ p {
 
   padding: 1.75rem;
 
-  backdrop-filter: blur(10px);
+  box-sizing: border-box;
 
-  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card:hover {
@@ -193,4 +202,19 @@ p {
 .secondary-link {
   color: #cbd5e1;
   text-decoration: none;
+}
+
+.travel-portal {
+  font-size: 5rem;
+  margin-top: 3rem;
+  opacity: 0.9;
+}
+
+.destination-card {
+  text-align: center;
+}
+
+.destination-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
