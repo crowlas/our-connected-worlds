@@ -53,8 +53,8 @@ function ChoosingDestinationSection() {
 
           <div className="card-row">
             <Card>
-              <div className="destination-card">
-                <div className="destination-icon">🌱</div>
+              <div className="">
+                <div className="card-icon">🌱</div>
 
                 <h3>Starter Village</h3>
 
@@ -65,8 +65,8 @@ function ChoosingDestinationSection() {
             </Card>
 
             <Card>
-              <div className="destination-card">
-                <div className="destination-icon">⚒️</div>
+              <div className="">
+                <div className="card-icon">⚒️</div>
 
                 <h3>Crafting Region</h3>
 
@@ -77,8 +77,8 @@ function ChoosingDestinationSection() {
             </Card>
 
             <Card>
-              <div className="destination-card">
-                <div className="destination-icon">🏰</div>
+              <div className="">
+                <div className="card-icon">🏰</div>
 
                 <h3>Ancient Kingdom</h3>
 

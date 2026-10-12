@@ -14,7 +14,7 @@ export default function JourneyStep({
   return (
     <Card>
       <div className="journey-step">
-        <div className="journey-step-icon">{icon}</div>
+        <div className="card-icon">{icon}</div>
 
         <h3>{title}</h3>
 

@@ -9,12 +9,12 @@ export default function Journey() {
         <div className="journey text-center">
           <h2 className="journey-title">Your Journey</h2>
 
-          <p className="journey-description">
+          <p className="content-narrow">
             Every creator begins as a traveler. Explore worlds, discover new
             ideas and resources, and shape a world of your own.
           </p>
 
-          <div className="journey-steps">
+          <div className="card-row">
             <JourneyStep
               icon="🧭"
               title="Explore"

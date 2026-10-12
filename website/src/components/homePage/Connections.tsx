@@ -9,13 +9,13 @@ export default function Connections() {
         <div className="connections text-center">
           <h2>Connections Are Optional</h2>
 
-          <p className="connections-description">
+          <p className="content-narrow">
             Every world remains independent. Creators decide what can travel
             between worlds, and what should remain unique to their own
             experience.
           </p>
 
-          <div className="connections-cards">
+          <div className="card-row">
             <ConnectionCard
               icon="📦"
               title="Resources"
@@ -31,14 +31,14 @@ export default function Connections() {
             <ConnectionCard
               icon="💾"
               title="Progress"
-              description="Reuse an existing save, extend a previous adventure, or start from a completely fresh experience."
+              description="Reuse an existing savfe, extend a previous adventure, or start from a completely fresh experience."
             />
           </div>
 
           <div className="connections-examples">
             <h3>What Does That Mean?</h3>
 
-            <div className="connections-example-cards">
+            <div className="card-row">
               <ExampleCard
                 title="A Sequel"
                 description="Continue a story started in another world."
@@ -76,7 +76,7 @@ function ConnectionCard({ icon, title, description }: ConnectionCardProps) {
   return (
     <Card>
       <div className="connection-card text-center">
-        <div className="connection-card-icon">{icon}</div>
+        <div className="card-icon">{icon}</div>
 
         <h3>{title}</h3>
 
