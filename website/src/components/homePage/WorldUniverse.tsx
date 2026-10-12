@@ -3,15 +3,17 @@ import { useEffect, useMemo, useState } from "react";
 import WorldPlanet from "./WorldPlanet";
 
 import {
-    BASE_HOME_RADIUS,
-    commonRoutes,
-    homeColors,
-    rareRoutes,
-    TRAVEL_SPEED,
-    travelerColors,
-    uncommonRoutes,
-    worlds,
-} from "../data/worldUniverseData";
+  BASE_HOME_RADIUS,
+  commonRoutes,
+  homeColors,
+  rareRoutes,
+  TRAVEL_SPEED,
+  travelerColors,
+  uncommonRoutes,
+  worlds,
+} from "../../data/worldUniverseData";
+import PageContainer from "../common/PageContainer";
+import Section from "../common/Section";
 
 type Traveler = {
   from: string;
@@ -203,126 +205,121 @@ export default function WorldUniverse() {
   }, []);
 
   return (
-    <section
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        padding: "4rem 0",
-        background: "#0F172A",
-      }}
-    >
-      <svg width={900} height={650}>
-        <defs>
-          <filter id="planetShadow">
-            <feDropShadow
-              dx="0"
-              dy="5"
-              stdDeviation="8"
-              floodColor="#000000"
-              floodOpacity="0.5"
-            />
-          </filter>
+    <Section>
+      <PageContainer>
+        <svg width={900} height={650}>
+          <defs>
+            <filter id="planetShadow">
+              <feDropShadow
+                dx="0"
+                dy="5"
+                stdDeviation="8"
+                floodColor="#000000"
+                floodOpacity="0.5"
+              />
+            </filter>
 
-          {Object.entries(worlds).map(([key, world]) => {
-            const color = key === "home" ? homeColor : world.color;
+            {Object.entries(worlds).map(([key, world]) => {
+              const color = key === "home" ? homeColor : world.color;
+
+              return (
+                <radialGradient
+                  key={key}
+                  id={`planet-${key}`}
+                  cx="25%"
+                  cy="25%"
+                  r="75%"
+                >
+                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
+
+                  <stop offset="10%" stopColor="#FFFFFF" stopOpacity="0.6" />
+
+                  <stop offset="30%" stopColor={color} />
+
+                  <stop offset="85%" stopColor={color} />
+
+                  <stop offset="100%" stopColor="#000000" stopOpacity="0.8" />
+                </radialGradient>
+              );
+            })}
+          </defs>
+
+          {stars.map((star) => (
+            <circle
+              key={star.id}
+              cx={star.x}
+              cy={star.y}
+              r={star.r}
+              fill="white"
+              opacity={star.opacity}
+            />
+          ))}
+
+          {travelers.map((traveler, index) => {
+            const fromOffset =
+              traveler.from === "home"
+                ? { dx: 0, dy: 0 }
+                : getWorldOffset(traveler.from, time);
+
+            const toOffset =
+              traveler.to === "home"
+                ? { dx: 0, dy: 0 }
+                : getWorldOffset(traveler.to, time);
+
+            const from = {
+              ...worlds[traveler.from],
+              x: worlds[traveler.from].x + fromOffset.dx,
+              y: worlds[traveler.from].y + fromOffset.dy,
+            };
+
+            const to = {
+              ...worlds[traveler.to],
+              x: worlds[traveler.to].x + toOffset.dx,
+              y: worlds[traveler.to].y + toOffset.dy,
+            };
+
+            const x = from.x + (to.x - from.x) * traveler.progress;
+
+            const y = from.y + (to.y - from.y) * traveler.progress;
 
             return (
-              <radialGradient
-                key={key}
-                id={`planet-${key}`}
-                cx="25%"
-                cy="25%"
-                r="75%"
-              >
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
+              <g key={index}>
+                <line
+                  x1={from.x}
+                  y1={from.y}
+                  x2={to.x}
+                  y2={to.y}
+                  stroke={traveler.color}
+                  strokeWidth={2}
+                  opacity={0.1}
+                />
 
-                <stop offset="10%" stopColor="#FFFFFF" stopOpacity="0.6" />
-
-                <stop offset="30%" stopColor={color} />
-
-                <stop offset="85%" stopColor={color} />
-
-                <stop offset="100%" stopColor="#000000" stopOpacity="0.8" />
-              </radialGradient>
+                <circle cx={x} cy={y} r={6} fill={traveler.color} />
+              </g>
             );
           })}
-        </defs>
 
-        {stars.map((star) => (
-          <circle
-            key={star.id}
-            cx={star.x}
-            cy={star.y}
-            r={star.r}
-            fill="white"
-            opacity={star.opacity}
-          />
-        ))}
+          {Object.entries(worlds).map(([key, world]) => {
+            const offset =
+              key === "home" ? { dx: 0, dy: 0 } : getWorldOffset(key, time);
 
-        {travelers.map((traveler, index) => {
-          const fromOffset =
-            traveler.from === "home"
-              ? { dx: 0, dy: 0 }
-              : getWorldOffset(traveler.from, time);
-
-          const toOffset =
-            traveler.to === "home"
-              ? { dx: 0, dy: 0 }
-              : getWorldOffset(traveler.to, time);
-
-          const from = {
-            ...worlds[traveler.from],
-            x: worlds[traveler.from].x + fromOffset.dx,
-            y: worlds[traveler.from].y + fromOffset.dy,
-          };
-
-          const to = {
-            ...worlds[traveler.to],
-            x: worlds[traveler.to].x + toOffset.dx,
-            y: worlds[traveler.to].y + toOffset.dy,
-          };
-
-          const x = from.x + (to.x - from.x) * traveler.progress;
-
-          const y = from.y + (to.y - from.y) * traveler.progress;
-
-          return (
-            <g key={index}>
-              <line
-                x1={from.x}
-                y1={from.y}
-                x2={to.x}
-                y2={to.y}
-                stroke={traveler.color}
-                strokeWidth={2}
-                opacity={0.1}
+            return (
+              <WorldPlanet
+                key={key}
+                id={key}
+                world={{
+                  ...world,
+                  x: world.x + offset.dx,
+                  y: world.y + offset.dy,
+                  radius: key === "home" ? homeRadius : world.radius,
+                  color: key === "home" ? homeColor : world.color,
+                }}
+                central={key === "home"}
               />
-
-              <circle cx={x} cy={y} r={6} fill={traveler.color} />
-            </g>
-          );
-        })}
-
-        {Object.entries(worlds).map(([key, world]) => {
-          const offset =
-            key === "home" ? { dx: 0, dy: 0 } : getWorldOffset(key, time);
-
-          return (
-            <WorldPlanet
-              key={key}
-              id={key}
-              world={{
-                ...world,
-                x: world.x + offset.dx,
-                y: world.y + offset.dy,
-                radius: key === "home" ? homeRadius : world.radius,
-                color: key === "home" ? homeColor : world.color,
-              }}
-              central={key === "home"}
-            />
-          );
-        })}
-      </svg>
-    </section>
+            );
+          })}
+        </svg>
+      </PageContainer>
+    </Section>
   );
 }
