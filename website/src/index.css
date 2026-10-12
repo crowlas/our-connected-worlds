@@ -60,13 +60,7 @@ p {
   text-align: center;
 }
 
-.hero {
-  min-height: 70vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
+.text-center {
   text-align: center;
 }
 
@@ -111,10 +105,6 @@ p {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
-.journey {
-  text-align: center;
-}
-
 .journey-title {
   margin-bottom: 1rem;
 }
@@ -140,10 +130,6 @@ p {
 .journey-step-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
-}
-
-.connections {
-  text-align: center;
 }
 
 .connections-description {
@@ -174,10 +160,6 @@ p {
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
-}
-
-.connection-card {
-  text-align: center;
 }
 
 .connection-card-icon {

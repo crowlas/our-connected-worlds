@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <Section>
       <PageContainer>
-        <div className="hero">
+        <div className="hero text-center">
           <h1>Our Connected Worlds</h1>
 
           <p>You are not the hero of a single story.</p>

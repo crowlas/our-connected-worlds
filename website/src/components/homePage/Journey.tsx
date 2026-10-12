@@ -6,7 +6,7 @@ export default function Journey() {
   return (
     <Section>
       <PageContainer>
-        <div className="journey">
+        <div className="journey text-center">
           <h2 className="journey-title">Your Journey</h2>
 
           <p className="journey-description">

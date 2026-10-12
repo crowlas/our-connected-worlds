@@ -6,7 +6,7 @@ export default function Connections() {
   return (
     <Section>
       <PageContainer>
-        <div className="connections">
+        <div className="connections text-center">
           <h2>Connections Are Optional</h2>
 
           <p className="connections-description">
@@ -75,7 +75,7 @@ type ConnectionCardProps = {
 function ConnectionCard({ icon, title, description }: ConnectionCardProps) {
   return (
     <Card>
-      <div className="connection-card">
+      <div className="connection-card text-center">
         <div className="connection-card-icon">{icon}</div>
 
         <h3>{title}</h3>
