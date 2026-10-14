@@ -31,7 +31,7 @@ export default function Connections() {
             <ConnectionCard
               icon="💾"
               title="Progress"
-              description="Reuse an existing savfe, extend a previous adventure, or start from a completely fresh experience."
+              description="Reuse an existing save, extend a previous adventure, or start from a completely fresh experience."
             />
           </div>
 

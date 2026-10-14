@@ -5,7 +5,6 @@ import Hero from "../components/homePage/Hero";
 import Journey from "../components/homePage/Journey";
 import WorldUniverse from "../components/homePage/WorldUniverse";
 
-import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -20,10 +19,6 @@ function HomePage() {
       </Section>
       <Journey />
       <Connections />
-
-      <Link to="/travel" className="primary-button">
-        Learn How Travel Works →
-      </Link>
     </main>
   );
 }
