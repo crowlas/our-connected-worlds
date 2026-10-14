@@ -16,19 +16,19 @@ export default function Connections() {
           </p>
 
           <div className="card-row">
-            <ConnectionCard
+            <Card
               icon="📦"
               title="Resources"
               description="Allow players to bring materials, currencies, collectibles or crafting components from other worlds."
             />
 
-            <ConnectionCard
+            <Card
               icon="🧙"
               title="Characters"
               description="Continue the journey of the same character across multiple worlds, or create a brand new hero."
             />
 
-            <ConnectionCard
+            <Card
               icon="💾"
               title="Progress"
               description="Reuse an existing save, extend a previous adventure, or start from a completely fresh experience."
@@ -39,69 +39,33 @@ export default function Connections() {
             <h3>What Does That Mean?</h3>
 
             <div className="card-row">
-              <ExampleCard
+              <Card
                 title="A Sequel"
                 description="Continue a story started in another world."
+                titleLevel={4}
               />
 
-              <ExampleCard
+              <Card
                 title="A New Region"
                 description="Expand an existing universe with a new map or kingdom."
+                titleLevel={4}
               />
 
-              <ExampleCard
+              <Card
                 title="Another Perspective"
                 description="Tell the same story through different characters."
+                titleLevel={4}
               />
 
-              <ExampleCard
+              <Card
                 title="A Different Experience"
                 description="Change the gameplay completely while keeping connections to previous worlds."
+                titleLevel={4}
               />
             </div>
           </div>
         </div>
       </PageContainer>
     </Section>
-  );
-}
-
-type ConnectionCardProps = {
-  icon: string;
-  title: string;
-  description: string;
-};
-
-function ConnectionCard({ icon, title, description }: ConnectionCardProps) {
-  return (
-    <Card>
-      <div className="card-icon">{icon}</div>
-
-      <h3>{title}</h3>
-
-      <p>{description}</p>
-    </Card>
-  );
-}
-
-type ExampleCardProps = {
-  title: string;
-  description: string;
-};
-
-function ExampleCard({ title, description }: ExampleCardProps) {
-  return (
-    <Card>
-      <h4>{title}</h4>
-
-      <p
-        style={{
-          color: "#D1D5DB",
-          lineHeight: 1.6,
-        }}
-      >
-        {description}
-      </p>
-    </Card>
   );
 }

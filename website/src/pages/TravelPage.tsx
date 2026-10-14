@@ -30,9 +30,10 @@ function HeroSection() {
             Suddenly, an ocean of possibilities awakens before you. Countless
             worlds. Countless creators. Countless journeys.
             <br />
-            The question is no longer whether you can travel. It is : "Which
+            The question is no longer whether you can travel. It is: "Which
             one?".
           </p>
+
           <div className="travel-portal">🌀</div>
         </div>
       </PageContainer>
@@ -52,35 +53,23 @@ function ChoosingDestinationSection() {
           </p>
 
           <div className="card-row">
-            <Card>
-              <div className="card-icon">🌱</div>
+            <Card
+              icon="🌱"
+              title="Starter Village"
+              description="Simple resources. Affordable travel."
+            />
 
-              <h3>Starter Village</h3>
+            <Card
+              icon="⚒️"
+              title="Crafting Region"
+              description="Specialized materials. Moderate travel cost."
+            />
 
-              <p>Simple resources.</p>
-
-              <p>Affordable travel.</p>
-            </Card>
-
-            <Card>
-              <div className="card-icon">⚒️</div>
-
-              <h3>Crafting Region</h3>
-
-              <p>Specialized materials.</p>
-
-              <p>Moderate travel cost.</p>
-            </Card>
-
-            <Card>
-              <div className="card-icon">🏰</div>
-
-              <h3>Ancient Kingdom</h3>
-
-              <p>Rare opportunities.</p>
-
-              <p>Demanding access.</p>
-            </Card>
+            <Card
+              icon="🏰"
+              title="Ancient Kingdom"
+              description="Rare opportunities. Demanding access."
+            />
           </div>
         </div>
       </PageContainer>
@@ -105,23 +94,15 @@ function WhyItMattersSection() {
           </p>
 
           <div className="card-row">
-            <Card>
-              <h3>For Travelers</h3>
+            <Card
+              title="For Travelers"
+              description="There is always a meaningful destination adapted to your current journey."
+            />
 
-              <p>
-                There is always a meaningful destination adapted to your current
-                journey.
-              </p>
-            </Card>
-
-            <Card>
-              <h3>For Creators</h3>
-
-              <p>
-                Worlds can specialize in different stages of progression without
-                controlling the entire player experience.
-              </p>
-            </Card>
+            <Card
+              title="For Creators"
+              description="Worlds can specialize in different stages of progression without controlling the entire player experience."
+            />
           </div>
 
           <p className="content-narrow">
@@ -129,7 +110,7 @@ function WhyItMattersSection() {
             creator who builds a legendary destination.
           </p>
 
-          <p className="content-narrow hero-question">
+          <p className="content-narrow">
             Every world contributes a different piece of the journey.
           </p>
         </div>

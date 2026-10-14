@@ -1,6 +1,6 @@
+import Card from "../common/Card";
 import PageContainer from "../common/PageContainer";
 import Section from "../common/Section";
-import JourneyStep from "./JourneyStep";
 
 export default function Journey() {
   return (
@@ -15,22 +15,22 @@ export default function Journey() {
           </p>
 
           <div className="card-row">
-            <JourneyStep
+            <Card
               icon="🧭"
               title="Explore"
               description="Travel through worlds created by other players."
             />
 
-            <JourneyStep
+            <Card
               icon="✨"
               title="Bring Back"
               description="Gather ideas, resources and inspiration."
             />
 
-            <JourneyStep
+            <Card
               icon="🌍"
               title="Create"
-              description="Build the next destination of the journey."
+              description="Build a world that becomes uniquely yours."
             />
           </div>
         </div>
