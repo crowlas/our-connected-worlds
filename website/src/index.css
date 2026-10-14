@@ -196,3 +196,51 @@ p {
   max-width: 900px;
   margin: 0 auto;
 }
+
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  backdrop-filter: blur(12px);
+
+  background: rgba(2, 6, 23, 0.8);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.top-nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+
+  max-width: 1200px;
+  margin: 0 auto;
+
+  padding: 1rem 2rem;
+}
+
+.top-nav-links a {
+  color: #cbd5e1;
+
+  text-decoration: none;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.top-nav-links a:hover {
+  color: #f8fafc;
+}
+
+.top-nav-links a.active {
+  color: #60a5fa;
+}
+
+.top-nav-links a.active {
+  color: #60a5fa;
+}
