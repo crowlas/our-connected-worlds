@@ -32,6 +32,8 @@ function HeroSection() {
             worlds to exchange information while remaining completely
             autonomous.
           </p>
+
+          <div className="travel-portal">📚</div>
         </div>
       </PageContainer>
     </Section>
@@ -56,23 +58,28 @@ function ResourceCatalogSection() {
 
           <div className="card-row">
             <Card
+              icon="📦"
               title="Category"
               description="Define what is the item (plant, food, potion, sword, headgear, ...)"
             />
 
             <Card
+              icon="✨"
               title="Effect"
               description="Define the effect of usage (heal, damage, buff, debuff)"
             />
 
             <Card
+              icon="🎯"
               title="Target Stat"
               description="Used to define the target of usage (vitality, magicpool, endurance, attack, defense, ...)"
             />
 
             <Card
+              highlighted
+              icon="💰"
               title="Price"
-              description="Used to define an order of potency and rarity."
+              description="Numerical value used by the aggregator to estimate rarity, progression and economic impact across worlds."
             />
           </div>
 
@@ -102,16 +109,19 @@ function WorldDataSection() {
 
           <div className="card-row">
             <Card
+              icon="💾"
               title="Internal Save"
               description="Each world has his own data related to his own mechanics."
             />
 
             <Card
+              icon="🔄"
               title="Imported Save"
               description="Save from compatible world can be imported to retreive your inventory and continue the journey."
             />
 
             <Card
+              icon="👤"
               title="Account Data"
               description="Account data live outside of games but is always avaible to them to add transversal progression."
             />

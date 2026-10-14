@@ -1,4 +1,5 @@
 type Props = {
+  highlighted?: boolean;
   title: string;
   description: string;
 
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export default function Card({
+  highlighted,
   title,
   description,
   icon,
@@ -16,7 +18,7 @@ export default function Card({
   const TitleTag = titleLevel === 3 ? "h3" : "h4";
 
   return (
-    <div className="card">
+    <div className={highlighted ? "card card-highlighted" : "card"}>
       <div className="text-center">
         {icon && <div className="card-icon">{icon}</div>}
 
