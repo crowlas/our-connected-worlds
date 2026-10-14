@@ -5,5 +5,9 @@ type Props = {
 };
 
 export default function Card({ children }: Props) {
-  return <div className="card">{children}</div>;
+  return (
+    <div className="card">
+      <div className="text-center">{children}</div>
+    </div>
+  );
 }

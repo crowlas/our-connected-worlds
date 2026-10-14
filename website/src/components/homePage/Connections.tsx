@@ -75,13 +75,11 @@ type ConnectionCardProps = {
 function ConnectionCard({ icon, title, description }: ConnectionCardProps) {
   return (
     <Card>
-      <div className="connection-card text-center">
-        <div className="card-icon">{icon}</div>
+      <div className="card-icon">{icon}</div>
 
-        <h3>{title}</h3>
+      <h3>{title}</h3>
 
-        <p>{description}</p>
-      </div>
+      <p>{description}</p>
     </Card>
   );
 }

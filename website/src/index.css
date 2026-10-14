@@ -76,7 +76,6 @@ p {
 
 .card {
   width: 250px;
-  min-height: 220px;
 
   background: rgba(30, 41, 59, 0.75);
 
@@ -140,16 +139,6 @@ p {
   margin: 0 auto 4rem;
 }
 
-.journey-step {
-  width: 250px;
-  text-align: center;
-}
-
-.journey-step-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
 .connections-examples {
   max-width: 1000px;
   margin: 0 auto;
@@ -157,11 +146,6 @@ p {
 
 .connections-examples h3 {
   margin-bottom: 2rem;
-}
-
-.connection-card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
 }
 
 .primary-button {

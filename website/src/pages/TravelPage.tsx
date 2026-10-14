@@ -53,39 +53,33 @@ function ChoosingDestinationSection() {
 
           <div className="card-row">
             <Card>
-              <div className="">
-                <div className="card-icon">🌱</div>
+              <div className="card-icon">🌱</div>
 
-                <h3>Starter Village</h3>
+              <h3>Starter Village</h3>
 
-                <p>Simple resources.</p>
+              <p>Simple resources.</p>
 
-                <p>Affordable travel.</p>
-              </div>
+              <p>Affordable travel.</p>
             </Card>
 
             <Card>
-              <div className="">
-                <div className="card-icon">⚒️</div>
+              <div className="card-icon">⚒️</div>
 
-                <h3>Crafting Region</h3>
+              <h3>Crafting Region</h3>
 
-                <p>Specialized materials.</p>
+              <p>Specialized materials.</p>
 
-                <p>Moderate travel cost.</p>
-              </div>
+              <p>Moderate travel cost.</p>
             </Card>
 
             <Card>
-              <div className="">
-                <div className="card-icon">🏰</div>
+              <div className="card-icon">🏰</div>
 
-                <h3>Ancient Kingdom</h3>
+              <h3>Ancient Kingdom</h3>
 
-                <p>Rare opportunities.</p>
+              <p>Rare opportunities.</p>
 
-                <p>Demanding access.</p>
-              </div>
+              <p>Demanding access.</p>
             </Card>
           </div>
         </div>

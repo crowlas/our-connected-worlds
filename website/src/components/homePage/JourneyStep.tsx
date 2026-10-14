@@ -13,13 +13,11 @@ export default function JourneyStep({
 }: JourneyStepProps) {
   return (
     <Card>
-      <div className="journey-step">
-        <div className="card-icon">{icon}</div>
+      <div className="card-icon">{icon}</div>
 
-        <h3>{title}</h3>
+      <h3>{title}</h3>
 
-        <p>{description}</p>
-      </div>
+      <p>{description}</p>
     </Card>
   );
 }
