@@ -55,13 +55,13 @@ function ChoosingDestinationSection() {
           <div className="card-row">
             <Card
               icon="🌱"
-              title="Starter Village"
+              title="Starter Plain"
               description="Simple resources. Affordable travel."
             />
 
             <Card
               icon="⚒️"
-              title="Crafting Region"
+              title="Small Village"
               description="Specialized materials. Moderate travel cost."
             />
 
@@ -95,11 +95,13 @@ function WhyItMattersSection() {
 
           <div className="card-row">
             <Card
+              icon="🧙"
               title="For Travelers"
               description="There is always a meaningful destination adapted to your current journey."
             />
 
             <Card
+              icon="👷"
               title="For Creators"
               description="Worlds can specialize in different stages of progression without controlling the entire player experience."
             />

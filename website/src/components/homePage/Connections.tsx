@@ -10,9 +10,8 @@ export default function Connections() {
           <h2>Connections Are Optional</h2>
 
           <p className="content-narrow">
-            Every world remains independent. Creators decide what can travel
-            between worlds, and what should remain unique to their own
-            experience.
+            Creators decide what can travel between worlds, and what should
+            remain unique to their own experience.
           </p>
 
           <div className="card-row">
@@ -26,12 +25,6 @@ export default function Connections() {
               icon="🧙"
               title="Characters"
               description="Continue the journey of the same character across multiple worlds, or create a brand new hero."
-            />
-
-            <Card
-              icon="💾"
-              title="Progress"
-              description="Reuse an existing save, extend a previous adventure, or start from a completely fresh experience."
             />
           </div>
 
@@ -52,14 +45,8 @@ export default function Connections() {
               />
 
               <Card
-                title="Another Perspective"
-                description="Tell the same story through different characters."
-                titleLevel={4}
-              />
-
-              <Card
                 title="A Different Experience"
-                description="Change the gameplay completely while keeping connections to previous worlds."
+                description="Change the gameplay completely while keeping your progression."
                 titleLevel={4}
               />
             </div>
