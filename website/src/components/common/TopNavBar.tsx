@@ -8,9 +8,9 @@ export default function TopNavBar() {
 
         <NavLink to="/travel">Travel</NavLink>
 
-        <NavLink to="/creators">Creators</NavLink>
-
         <NavLink to="/technical">Technical</NavLink>
+
+        <NavLink to="/compatibility">What it is not ?</NavLink>
       </nav>
     </header>
   );
