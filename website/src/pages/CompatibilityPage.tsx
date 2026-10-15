@@ -32,8 +32,9 @@ function HeroSection() {
           </p>
 
           <p className="content-narrow">
-            The platform offers a shared language for resources, progression and
-            save exchange. Deeper continuity remains a creator decision.
+            The platform offers a shared language for resources index, character
+            progression and save exchange. Implementation remains a creator
+            decision.
           </p>
         </div>
       </PageContainer>
@@ -94,7 +95,10 @@ function PromiseSection() {
         <div className="text-center">
           <h2>The Real Promise</h2>
 
-          <p className="content-narrow">Connected Worlds can still help you.</p>
+          <p className="content-narrow">
+            Despite these limitations, meaningful collaboration remains possible
+            between creators and the aggregator.
+          </p>
 
           <div className="card-row">
             <Card
@@ -139,7 +143,11 @@ function CollaborationSection() {
           <h2>When Creators Connect</h2>
 
           <p className="content-narrow">
-            Creators decide how far they want collaboration to go.
+            Creators may choose to connect their worlds at different levels.
+          </p>
+          <p className="content-narrow">
+            The deeper the connection, the more requirements must be satisfied
+            to keep the experience meaningful for players.
           </p>
 
           <div className="card-row">
@@ -147,18 +155,65 @@ function CollaborationSection() {
               icon="📦"
               title="Shared Resources"
               description="Independent worlds exchange value through a common catalog."
+              detailsTitle="Requirements"
+              details={
+                <>
+                  <ul>
+                    <li style={{ color: "green" }}>
+                      Shared resource identifiers
+                    </li>
+                    <li style={{ color: "green" }}>
+                      Shared account progression
+                    </li>
+                    <li>No gameplay compatibility required</li>
+                  </ul>
+                  <p>The meaning of resources may differ between worlds.</p>
+                </>
+              }
             />
 
             <Card
               icon="💾"
-              title="Save Import"
-              description="A journey started in one world continues in another."
+              title="Import Existing Progress"
+              description="A journey started in one world end in another."
+              detailsTitle="Requirements"
+              details={
+                <>
+                  <ul>
+                    <li style={{ color: "green" }}>Shared save conventions</li>
+                    <li style={{ color: "red" }}>
+                      Meaningful resource interpretation
+                    </li>
+                    <li>Creator communication recommanded</li>
+                  </ul>
+                  <p>Imported data should remain meaningful for players.</p>
+                </>
+              }
             />
 
             <Card
               icon="🗺️"
-              title="New Region"
-              description="Creators collaborate to expand an existing world."
+              title="Bidirectional Travel"
+              description="Creators collaborate to expand an existing world with locations to go back and forth."
+              detailsTitle="Requirements"
+              details={
+                <>
+                  <ul>
+                    <li>Strong save compatibility</li>
+                    <li>Shared datasets</li>
+                    <li style={{ color: "red" }}>
+                      Shared technical foundations
+                    </li>
+                    <li style={{ color: "red" }}>
+                      Creator communication essential
+                    </li>
+                  </ul>
+                  <p>
+                    Players may leave one world and later return with new
+                    progression acquired elsewhere.
+                  </p>
+                </>
+              }
             />
           </div>
 

@@ -88,6 +88,7 @@ p {
 
   display: flex;
   justify-content: center;
+  flex-direction: column;
 
   transition:
     transform 0.2s ease,
@@ -268,4 +269,62 @@ p {
   color: #94a3b8;
   font-size: 2rem;
   font-weight: 500;
+}
+
+.card-summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.card-summary::-webkit-details-marker {
+  display: none;
+}
+
+.card-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+
+  border-top: 1px solid #334155;
+
+  text-align: left;
+}
+
+.card-details-button {
+  margin-top: 1rem;
+
+  background: transparent;
+  border: none;
+
+  color: #60a5fa;
+
+  cursor: pointer;
+}
+
+.card-details-button:hover {
+  color: #93c5fd;
+}
+
+.card-expand-hint {
+  margin-top: 1rem;
+
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.card[open] .card-expand-hint {
+  display: none;
+}
+
+.card-details ul {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.card-details li {
+  margin-bottom: 0.5rem;
+  color: #cbd5e1;
+}
+
+.card-details p {
+  margin-top: 1rem;
 }
