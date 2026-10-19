@@ -5,7 +5,6 @@ import Hero from "../components/homePage/Hero";
 import Journey from "../components/homePage/Journey";
 import WorldUniverse from "../components/homePage/WorldUniverse";
 
-
 function HomePage() {
   return (
     <main>

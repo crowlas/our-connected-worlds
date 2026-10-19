@@ -1,4 +1,4 @@
-import type { World } from "../../data/worldUniverseData";
+import type { World } from "./data/worldUniverseData";
 
 type Props = {
   id: string;
