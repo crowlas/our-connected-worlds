@@ -1,19 +1,30 @@
 import type { World } from "./data/worldUniverseData";
 
 type Props = {
-  id: string;
   world: World;
+  gradientId: string;
   central?: boolean;
 };
 
-export default function WorldPlanet({ id, world, central = false }: Props) {
+/**
+ * Renders a world within the universe.
+ *
+ * Worlds display their name below the planet.
+ * Satellites display their icon directly on the planet
+ * to reduce visual clutter.
+ */
+export default function WorldPlanet({
+  world,
+  gradientId,
+  central = false,
+}: Props) {
   return (
     <>
       <circle
         cx={world.x}
         cy={world.y}
         r={world.radius}
-        fill={`url(#planet-${id})`}
+        fill={`url(#${gradientId})`}
         filter="url(#planetShadow)"
       />
 
