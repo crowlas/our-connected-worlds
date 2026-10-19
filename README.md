@@ -21,3 +21,10 @@ Creators define their own gameplay, economy and rewards while benefiting from a 
 - [ ] Playable mockup
 - [ ] Vertical slice
 - [ ] Aggregator prototype
+
+## Project History
+
+The project has gone through several iterations.
+A retrospective of the first major vision can be found in:
+
+- docs/LessonsLearned.md
