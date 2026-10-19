@@ -1,53 +1,25 @@
-import { useEffect, useMemo, useState } from "react";
-
-import {
-  BASE_HOME_RADIUS,
-  homeColors,
-  TRAVEL_SPEED,
-} from "./worldUniverse/universeWorlds/data/worldUniverseData";
+import { useMemo } from "react";
 
 import UniverseDefs from "./worldUniverse/UniverseDefs";
 import UniverseStars from "./worldUniverse/UniverseStars";
 import UniverseTravelers from "./worldUniverse/UniverseTravelers";
 import UniverseWorlds from "./worldUniverse/UniverseWorlds";
 
-import type { Traveler } from "./worldUniverse/universeWorlds/travelerUtils";
-import { createTraveler } from "./worldUniverse/universeWorlds/travelerUtils";
+import useUniverseAnimation from "./worldUniverse/hooks/useUniverseAnimation";
+import useUniverseClock from "./worldUniverse/hooks/useUniverseClock";
 
 /**
- * Main universe visualization.
+ * Main universe orchestration component.
  *
- * Responsibilities:
- * - manage universe animations
- * - manage traveler movement
- * - animate the central world
- * - compose all SVG layers
+ * See README.md for architectural and design details.
  */
 export default function WorldUniverse() {
-  const [travelers, setTravelers] = useState<Traveler[]>(() =>
-    Array.from({ length: 1 }, () => createTraveler()),
-  );
+  const time = useUniverseClock();
 
-  const [homeRadius, setHomeRadius] = useState(BASE_HOME_RADIUS);
-
-  const [homeColor, setHomeColor] = useState(homeColors[0]);
-
-  const [time, setTime] = useState(Date.now());
+  const { travelers, homeRadius, homeColor } = useUniverseAnimation();
 
   /**
-   * Global animation clock used by world motions.
-   */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(Date.now());
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  /**
-   * Background star field is generated once and
-   * remains stable for the lifetime of the component.
+   * Generate the star field once.
    */
   const stars = useMemo(
     () =>
@@ -60,54 +32,6 @@ export default function WorldUniverse() {
       })),
     [],
   );
-
-  /**
-   * Animate traveler movement.
-   */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTravelers((current) =>
-        current.map((traveler) => {
-          const nextProgress = traveler.progress + TRAVEL_SPEED;
-
-          if (nextProgress < 1) {
-            return {
-              ...traveler,
-              progress: nextProgress,
-            };
-          }
-
-          return createTraveler();
-        }),
-      );
-    }, 30);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  /**
-   * Pulse animation for the central world.
-   */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const pulse = BASE_HOME_RADIUS + Math.sin(Date.now() / 2000) * 34;
-
-      setHomeRadius(pulse);
-    }, 40);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  /**
-   * Cycles the color of the central world.
-   */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setHomeColor(homeColors[Math.floor(Math.random() * homeColors.length)]);
-    }, 2500);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <svg width={900} height={650}>
