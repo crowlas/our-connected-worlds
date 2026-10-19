@@ -12,7 +12,7 @@ import { createTraveler, type Traveler } from "../universeWorlds/travelerUtils";
  * Manages all animated universe state except the
  * shared animation clock.
  */
-export default function useUniverseAnimation() {
+export default function useUniverseAnimation(isRunning: boolean) {
   const [travelers, setTravelers] = useState<Traveler[]>(() =>
     Array.from({ length: 1 }, () => createTraveler()),
   );
@@ -25,6 +25,10 @@ export default function useUniverseAnimation() {
    * Move travelers between worlds.
    */
   useEffect(() => {
+    if (!isRunning) {
+      return;
+    }
+
     const interval = setInterval(() => {
       setTravelers((current) =>
         current.map((traveler) => {
@@ -43,12 +47,16 @@ export default function useUniverseAnimation() {
     }, 30);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isRunning]);
 
   /**
    * Pulse the central world.
    */
   useEffect(() => {
+    if (!isRunning) {
+      return;
+    }
+
     const interval = setInterval(() => {
       const pulse = BASE_HOME_RADIUS + Math.sin(Date.now() / 2000) * 34;
 
@@ -56,18 +64,22 @@ export default function useUniverseAnimation() {
     }, 40);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isRunning]);
 
   /**
    * Cycle the central world color.
    */
   useEffect(() => {
+    if (!isRunning) {
+      return;
+    }
+
     const interval = setInterval(() => {
       setHomeColor(homeColors[Math.floor(Math.random() * homeColors.length)]);
     }, 2500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isRunning]);
 
   return {
     travelers,

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import UniverseDefs from "./worldUniverse/UniverseDefs";
 import UniverseStars from "./worldUniverse/UniverseStars";
@@ -14,9 +14,11 @@ import useUniverseClock from "./worldUniverse/hooks/useUniverseClock";
  * See README.md for architectural and design details.
  */
 export default function WorldUniverse() {
-  const time = useUniverseClock();
+  const [isRunning, setIsRunning] = useState(true);
 
-  const { travelers, homeRadius, homeColor } = useUniverseAnimation();
+  const time = useUniverseClock(isRunning);
+
+  const { travelers, homeRadius, homeColor } = useUniverseAnimation(isRunning);
 
   /**
    * Generate the star field once.
@@ -34,18 +36,24 @@ export default function WorldUniverse() {
   );
 
   return (
-    <svg width={900} height={650}>
-      <UniverseDefs homeColor={homeColor} />
+    <>
+      <button onClick={() => setIsRunning((current) => !current)}>
+        {isRunning ? "Pause" : "Resume"}
+      </button>
 
-      <UniverseStars stars={stars} />
+      <svg width={900} height={650}>
+        <UniverseDefs homeColor={homeColor} />
 
-      <UniverseTravelers travelers={travelers} time={time} />
+        <UniverseStars stars={stars} />
 
-      <UniverseWorlds
-        time={time}
-        homeRadius={homeRadius}
-        homeColor={homeColor}
-      />
-    </svg>
+        <UniverseTravelers travelers={travelers} time={time} />
+
+        <UniverseWorlds
+          time={time}
+          homeRadius={homeRadius}
+          homeColor={homeColor}
+        />
+      </svg>
+    </>
   );
 }
